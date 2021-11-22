@@ -6,6 +6,9 @@
 
 //#include"../Engine/Audio/AudioSystem.h"
 
+#include "Graphics/Program.h"
+#include "Graphics/Material.h"
+#include "Graphics/Shader.h"
 //input
 #include "Input/InputSystem.h"
 
