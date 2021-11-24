@@ -19,10 +19,6 @@ namespace nc
 		bool Get(const rapidjson::Value& value, const std::string& name, glm::vec3& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, glm::vec4& data);
 
-
-
-
-
 		bool Get(const rapidjson::Value& value, const std::string& name, std::vector<std::string>& data);
 		bool Get(const rapidjson::Value& value, const std::string& name, std::vector<int>& data);
 	}

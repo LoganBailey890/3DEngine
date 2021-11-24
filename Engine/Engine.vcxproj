@@ -175,6 +175,8 @@
     <ClCompile Include="Audio\AudioChannel.cpp" />
     <ClCompile Include="Audio\AudioSystem.cpp" />
     <ClCompile Include="Componet\AudioComponent.cpp" />
+    <ClCompile Include="Componet\CameraComponent.cpp" />
+    <ClCompile Include="Componet\MeshComponent.cpp" />
     <ClCompile Include="Componet\PhisicsComponent.cpp" />
     <ClCompile Include="Core\FileSystem.cpp" />
     <ClCompile Include="Core\Json.cpp" />
@@ -185,6 +187,8 @@
     <ClCompile Include="Graphics\Material.cpp" />
     <ClCompile Include="Graphics\Program.cpp" />
     <ClCompile Include="Graphics\Shader.cpp" />
+    <ClCompile Include="Graphics\VertexBuffer.cpp" />
+    <ClCompile Include="Graphics\VertexIndexBuffer.cpp" />
     <ClCompile Include="Grapics\Render.cpp" />
     <ClCompile Include="Grapics\Texture.cpp" />
     <ClCompile Include="Input\InputSystem.cpp" />
@@ -198,8 +202,10 @@
     <ClInclude Include="Audio\AudioChannel.h" />
     <ClInclude Include="Audio\AudioSystem.h" />
     <ClInclude Include="Componet\AudioComponent.h" />
+    <ClInclude Include="Componet\CameraComponent.h" />
     <ClInclude Include="Componet\Component.h" />
     <ClInclude Include="Componet\GraphicsComponent.h" />
+    <ClInclude Include="Componet\MeshComponent.h" />
     <ClInclude Include="Componet\PhisicsComponent.h" />
     <ClInclude Include="Core\FileSystem.h" />
     <ClInclude Include="Core\Json.h" />
@@ -214,6 +220,8 @@
     <ClInclude Include="Graphics\Material.h" />
     <ClInclude Include="Graphics\Program.h" />
     <ClInclude Include="Graphics\Shader.h" />
+    <ClInclude Include="Graphics\VertexBuffer.h" />
+    <ClInclude Include="Graphics\VertexIndexBuffer.h" />
     <ClInclude Include="Grapics\Render.h" />
     <ClInclude Include="Grapics\Texture.h" />
     <ClInclude Include="Input\InputSystem.h" />
