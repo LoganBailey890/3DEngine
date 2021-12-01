@@ -63,15 +63,15 @@ int main(int argc, char** argv)
     glEnableVertexAttribArray(2);
 
 
-    std::shared_ptr<nc::Program> program = engine.Get<nc::ResourceSystem>()->Get<nc::Program>("basic_shader");
-    std::shared_ptr<nc::Shader> vshader = engine.Get<nc::ResourceSystem>()->Get<nc::Shader>("shaders/basic.vert", (void*)GL_VERTEX_SHADER);
-    std::shared_ptr<nc::Shader> fshader = engine.Get<nc::ResourceSystem>()->Get<nc::Shader>("shaders/basic.frag", (void*)GL_FRAGMENT_SHADER);
+    std::shared_ptr<nc::Program> program = engine.Get<nc::ResourceSystem>()->Get<nc::Program>("light_shader");
+    std::shared_ptr<nc::Shader> vshader = engine.Get<nc::ResourceSystem>()->Get<nc::Shader>("shaders/light.vert", (void*)GL_VERTEX_SHADER);
+    std::shared_ptr<nc::Shader> fshader = engine.Get<nc::ResourceSystem>()->Get<nc::Shader>("shaders/light.frag", (void*)GL_FRAGMENT_SHADER);
     program->AddShader(vshader);
     program->AddShader(fshader);
     program->Link();
     program->Use();
 
-    std::shared_ptr<nc::VertexIndexBuffer> vertexBuffer = engine.Get<nc::ResourceSystem>()->Get<nc::VertexIndexBuffer>("cube_mesh");
+    std::shared_ptr<nc::VertexBuffer> vertexBuffer = engine.Get<nc::ResourceSystem>()->Get<nc::VertexBuffer>("cube_mesh");
     vertexBuffer->CreateVertexBuffer(sizeof(vertices), 8, (void*)vertices);
     vertexBuffer->CreateIndexBuffer(GL_UNSIGNED_INT, 36, (void*)indices);
     vertexBuffer->SetAttribute(0, 3, 8 * sizeof(float), 0);
@@ -82,7 +82,7 @@ int main(int argc, char** argv)
 
 
     //texture
-    auto texture = engine.Get<nc::ResourceSystem>()->Get<nc::Texture>("textures/llama.jpg");
+    auto texture = engine.Get<nc::ResourceSystem>()->Get<nc::Texture>("textures/spot.png");
     texture->Bind();
 
 
@@ -92,15 +92,24 @@ int main(int argc, char** argv)
         auto actor = nc::ObjectFactory::Instance().Create<nc::Actor>("Actor");
         actor->name = "camera";
         actor->transform.position = glm::vec3{ 0, 0, 10 };
+        {
+            auto component = nc::ObjectFactory::Instance().Create<nc::CameraComponent>("CameraComponent");
+            component->SetPerspective(45.0f, 800.0f / 600.0f, 0.01f, 100.0f);
+            actor->AddComponent(std::move(component));
+
+        }
+
+        {
+            auto component = nc::ObjectFactory::Instance().Create<nc::FreeCameraController>("FreeCameraController");
+            component->speed = 3;
+            actor->AddComponent(std::move(component));
+
+        }
 
 
 
-        auto component = nc::ObjectFactory::Instance().Create<nc::CameraComponent>("CameraComponent");
-        component->SetPerspective(45.0f, 800.0f / 600.0f, 0.01f, 100.0f);
 
 
-
-        actor->AddComponent(std::move(component));
         scene->AddActor(std::move(actor));
     }
     // create cube
@@ -111,15 +120,33 @@ int main(int argc, char** argv)
 
 
 
-        auto component = nc::ObjectFactory::Instance().Create<nc::MeshComponent>("MeshComponent");
+        /*auto component = nc::ObjectFactory::Instance().Create<nc::MeshComponent>("MeshComponent");
         component->program = engine.Get<nc::ResourceSystem>()->Get<nc::Program>("basic_shader");
-        component->vertexBuffer = engine.Get<nc::ResourceSystem>()->Get<nc::VertexIndexBuffer>("cube_mesh");
+        component->vertexBuffer = engine.Get<nc::ResourceSystem>()->Get<nc::VertexBuffer>("cube_mesh");*/
+        auto component = nc::ObjectFactory::Instance().Create<nc::ModelComponent>("ModelComponent");
+        component->program = engine.Get<nc::ResourceSystem>() -> Get<nc::Program>("light_shader");
+        component->model = engine.Get<nc::ResourceSystem>() -> Get<nc::Model>("Models/spot.obj");
 
 
 
         actor->AddComponent(std::move(component));
         scene->AddActor(std::move(actor));
     }
+
+    //lighting
+    auto shader = engine.Get<nc::ResourceSystem>()->Get<nc::Program>("light_shader");
+    shader->SetUniform("light.ambient", glm::vec3{ .25 });
+    shader->SetUniform("material.ambient", glm::vec3{ 1 });
+
+    shader->SetUniform("light.diffuse", glm::vec3{ 1 });
+    shader->SetUniform("material.diffuse", glm::vec3{ 1 });
+
+    shader->SetUniform("light.specular", glm::vec3{ 1 });
+    shader->SetUniform("material.specular", glm::vec3{ 1 });
+
+    shader->SetUniform("light.position", glm::vec4{ 4,4,4,1 });
+
+
 
     glm::vec3 translate{ 0 };
     float angle = 0;
@@ -151,21 +178,12 @@ int main(int argc, char** argv)
 
 
 
-        // update actor
-        glm::vec3 direction{ 0 };
-        if (engine.Get<nc::InputSystem>()->GetKeyState(SDL_SCANCODE_A) == nc::InputSystem::eKeyState::Held) direction.x = -1;
-        if (engine.Get<nc::InputSystem>()->GetKeyState(SDL_SCANCODE_D) == nc::InputSystem::eKeyState::Held) direction.x = 1;
-        if (engine.Get<nc::InputSystem>()->GetKeyState(SDL_SCANCODE_W) == nc::InputSystem::eKeyState::Held) direction.z = -1;
-        if (engine.Get<nc::InputSystem>()->GetKeyState(SDL_SCANCODE_S) == nc::InputSystem::eKeyState::Held) direction.z = 1;
-        if (engine.Get<nc::InputSystem>()->GetKeyState(SDL_SCANCODE_E) == nc::InputSystem::eKeyState::Held) direction.y = 1;
-        if (engine.Get<nc::InputSystem>()->GetKeyState(SDL_SCANCODE_Q) == nc::InputSystem::eKeyState::Held) direction.y = -1;
-
 
 
         auto actor = scene->FindActor("cube");
         if (actor != nullptr)
         {
-            actor->transform.position += direction * 5.0f * engine.time.deltaTime;
+            //actor->transform.position += direction * 5.0f * engine.time.deltaTime;
             actor->transform.rotation.y += engine.time.deltaTime;
         }
 

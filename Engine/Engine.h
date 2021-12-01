@@ -10,7 +10,7 @@
 #include "Graphics/Material.h"
 #include "Graphics/Shader.h"
 #include "Graphics/VertexBuffer.h"
-#include "Graphics/VertexIndexBuffer.h"
+
 //input
 #include "Input/InputSystem.h"
 
@@ -50,6 +50,8 @@
 #include "Componet/AudioComponent.h"
 #include "Componet/MeshComponent.h"
 #include "Componet/CameraComponent.h"
+#include "Componet/FreeCameracontroller.h"
+#include "Componet/ModelComponent.h"
 #include <vector>
 #include <memory>
 #include<algorithm>

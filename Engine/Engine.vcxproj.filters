@@ -100,13 +100,19 @@
     <ClCompile Include="Graphics\VertexBuffer.cpp">
       <Filter>Sources\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics\VertexIndexBuffer.cpp">
-      <Filter>Sources\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Componet\MeshComponent.cpp">
       <Filter>Sources\Componet</Filter>
     </ClCompile>
     <ClCompile Include="Componet\CameraComponent.cpp">
+      <Filter>Sources\Componet</Filter>
+    </ClCompile>
+    <ClCompile Include="Componet\FreeCameraController.cpp">
+      <Filter>Sources\Componet</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics\Model.cpp">
+      <Filter>Sources\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Componet\ModelComponent.cpp">
       <Filter>Sources\Componet</Filter>
     </ClCompile>
   </ItemGroup>
@@ -207,13 +213,19 @@
     <ClInclude Include="Graphics\VertexBuffer.h">
       <Filter>Sources\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics\VertexIndexBuffer.h">
-      <Filter>Sources\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Componet\MeshComponent.h">
       <Filter>Sources\Componet</Filter>
     </ClInclude>
     <ClInclude Include="Componet\CameraComponent.h">
+      <Filter>Sources\Componet</Filter>
+    </ClInclude>
+    <ClInclude Include="Componet\FreeCameracontroller.h">
+      <Filter>Sources\Componet</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics\Model.h">
+      <Filter>Sources\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Componet\ModelComponent.h">
       <Filter>Sources\Componet</Filter>
     </ClInclude>
   </ItemGroup>

@@ -64,6 +64,12 @@ namespace nc
 		keyboardstate.resize(numKeys);
 		std::copy(keyboardStateSDL, keyboardStateSDL + numKeys, keyboardstate.begin());
 		prevKeyboardState = keyboardstate;
+
+		// set initial mouse position
+		int x, y;
+		Uint32 buttons = SDL_GetMouseState(&x, &y);
+		mousePosition = glm::vec2{ x , y };
+		prevMousePosition = mousePosition;
 	}
 
 	void nc::InputSystem::Shutdown()
@@ -77,12 +83,14 @@ namespace nc
 		std::copy(keyboardStateSDL, keyboardStateSDL + numKeys, keyboardstate.begin());
 
 		prevmouseButtonState = mouseButtonState;
+		prevMousePosition = mousePosition;
 		int x, y;
 		Uint32 buttons = SDL_GetMouseState(&x, &y);
 		mousePosition = glm::vec2{ x,y };
 		mouseButtonState[0] = buttons & SDL_BUTTON_LMASK; //buttons[0001] & [0RML]
 		mouseButtonState[1] = buttons & SDL_BUTTON_MMASK; //buttons[0010] & [0RML]
 		mouseButtonState[2] = buttons & SDL_BUTTON_RMASK; //buttons[0100] & [0RML]
+		mouseRelative = mousePosition - prevMousePosition;
 
 
 	
