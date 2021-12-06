@@ -4,7 +4,7 @@
 #include "Graphics/VertexBuffer.h"
 namespace nc
 {
-	class Renderer;
+	class Render;
 
 	class MeshComponent : public GraphicsComponent
 	{

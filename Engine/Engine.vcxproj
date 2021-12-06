@@ -177,6 +177,7 @@
     <ClCompile Include="Componet\AudioComponent.cpp" />
     <ClCompile Include="Componet\CameraComponent.cpp" />
     <ClCompile Include="Componet\FreeCameraController.cpp" />
+    <ClCompile Include="Componet\LightComponent.cpp" />
     <ClCompile Include="Componet\MeshComponent.cpp" />
     <ClCompile Include="Componet\ModelComponent.cpp" />
     <ClCompile Include="Componet\PhisicsComponent.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="Componet\FreeCameracontroller.h" />
     <ClInclude Include="Componet\Component.h" />
     <ClInclude Include="Componet\GraphicsComponent.h" />
+    <ClInclude Include="Componet\LightComponent.h" />
     <ClInclude Include="Componet\MeshComponent.h" />
     <ClInclude Include="Componet\ModelComponent.h" />
     <ClInclude Include="Componet\PhisicsComponent.h" />

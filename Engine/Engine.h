@@ -2,6 +2,7 @@
 
 
 #define REGISTER_CLASS(CLASS) nc::ObjectFactory::Instance().Register<CLASS>(#CLASS);
+#define CREATE_ENGINE_OBJECT(class) nc::ObjectFactory::Instance().Create<nc::class>(#class);
 
 
 //#include"../Engine/Audio/AudioSystem.h"
@@ -52,6 +53,7 @@
 #include "Componet/CameraComponent.h"
 #include "Componet/FreeCameracontroller.h"
 #include "Componet/ModelComponent.h"
+#include "Componet/LightComponent.h"
 #include <vector>
 #include <memory>
 #include<algorithm>

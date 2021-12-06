@@ -128,7 +128,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SoultionDir)ThirdParty\assimp\include;$(SolutionDir)ThirdParty\glm;$(SolutionDir)ThirdParty\glad\include;$(SolutionDir)ThirdParty\SDL2-2.0.14\include;$(SolutionDir)ThirdParty\rapidjson\include\rapidjson;$(SolutionDir)Engine;$(SolutionDir)ThirdParty\fmod\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)ThirdParty\assimp\include;$(SolutionDir)ThirdParty\glm;$(SolutionDir)ThirdParty\glad\include;$(SolutionDir)ThirdParty\SDL2-2.0.14\include;$(SolutionDir)ThirdParty\rapidjson\include\rapidjson;$(SolutionDir)Engine;$(SolutionDir)ThirdParty\fmod\api\core\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -168,10 +168,18 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\Build\Resources\materials\wood.mtl" />
     <None Include="..\Build\Resources\shaders\basic.frag" />
     <None Include="..\Build\Resources\shaders\basic.vert" />
-    <None Include="..\Build\Resources\shaders\light.frag" />
-    <None Include="..\Build\Resources\shaders\light.vert" />
+    <None Include="..\Build\Resources\shaders\flat.frag" />
+    <None Include="..\Build\Resources\shaders\flat.shdr" />
+    <None Include="..\Build\Resources\shaders\flat.vert" />
+    <None Include="..\Build\Resources\shaders\gouraud.frag" />
+    <None Include="..\Build\Resources\shaders\gouraud.shdr" />
+    <None Include="..\Build\Resources\shaders\gouraud.vert" />
+    <None Include="..\Build\Resources\shaders\phong.frag" />
+    <None Include="..\Build\Resources\shaders\phong.shdr" />
+    <None Include="..\Build\Resources\shaders\phong.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

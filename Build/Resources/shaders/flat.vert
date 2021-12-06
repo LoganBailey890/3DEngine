@@ -11,6 +11,7 @@
         vec3 ambient;
         vec3 diffuse;
         vec3 specular;
+        float shininess;
 
     };
         struct Light
@@ -50,7 +51,7 @@
             vec3 view_dir = normalize(-vec3(vposition));
             vec3 reflection = reflect(light_dir, vnormal);
             intensity = max(dot(view_dir, reflection), 0);
-            intensity = pow(intensity, 64);
+            intensity = pow(intensity, material.shininess);
             specular = material.specular * light.specular * intensity;
         }
 		fs_color = ambient+diffuse+specular;
